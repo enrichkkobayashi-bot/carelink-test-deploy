@@ -92,8 +92,8 @@ const carePlanSchema = {
         type: Type.OBJECT,
         properties: {
           need: { type: Type.STRING, description: "解決すべき課題" },
-          longTermGoal: { type: Type.STRING, description: "長期目標" },
-          shortTermGoal: { type: Type.STRING, description: "短期目標" },
+          longTermGoal: { type: Type.STRING, description: "長期目標（期間を含めないこと。例：△6か月後に歩行が安定する→○歩行が安定する）" },
+          shortTermGoal: { type: Type.STRING, description: "短期目標（期間を含めないこと。例：△3か月後に杖歩行ができる→○杖歩行ができる）" },
           services: {
             type: Type.ARRAY,
             items: {
@@ -330,7 +330,9 @@ ${instructions ? `【今回の方針指示・ユーザー要望】\n${instructio
 3. **第2表「解決すべき課題（ニーズ）」**
    - 優先順位の高いものを抽出する。
    - 表現は「〜ができるようになる」「〜を維持する」といったポジティブな表現や、「〜が整う」といった環境調整の視点を含める。
-   - **重要：長期目標・短期目標には、期間（「6か月後」「3か月後」など）を含めないこと**。目標の内容のみを簡潔に記述する。
+   - **【厳守】長期目標・短期目標には、期間（「6か月後」「3か月後」「〜月後」など）を絶対に含めないこと**。
+     - ❌ 誤った例：「6か月後に歩行が安定する」「3か月後に手すりを使用して立ち上がりができる」
+     - ✅ 正しい例：「歩行が安定する」「手すりを使用して立ち上がりができる」
    - 長期目標・短期目標は、実現可能性があり、評価可能な内容にする。
 
 4. **第2表「サービス内容」**
