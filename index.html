@@ -175,6 +175,9 @@
             document.body.prepend(errorDiv);
         });
 
+        const debugDiv = document.createElement('div');
+        debugDiv.style.border = "2px solid green";
+        debugDiv.style.padding = "10px";
         debugDiv.textContent = "VERSION 11 - FINAL CHECK. Time: " + new Date().toLocaleTimeString();
         document.body.appendChild(debugDiv);
     </script>
