@@ -105,7 +105,7 @@ const InputField = ({ label, value, field, onUpdate, type = "text", placeholder 
 );
 
 const SectionTitle = ({ title, pageNumber }: { title: string, pageNumber?: number }) => (
-  <div className="flex justify-between items-center bg-indigo-100 px-4 py-2 rounded mb-2">
+  <div className="flex justify-between items-center bg-indigo-100 px-4 py-2 rounded mb-4">
     <h3 className="text-sm font-bold text-indigo-900">{title}</h3>
     {pageNumber && <span className="text-[10px] text-indigo-400">Page {pageNumber} / 2</span>}
   </div>
@@ -172,7 +172,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
   };
 
   return (
-    <div className="face-sheet-container bg-white shadow-xl mx-auto max-w-[210mm] print:shadow-none print:mx-0 font-sans">
+    <div className="face-sheet-container bg-white shadow-xl mx-auto max-w-[210mm] print:shadow-none print:mx-0">
 
       {/* PAGE 1 */}
       <div className="w-[210mm] h-[296mm] p-[10mm] relative box-border overflow-hidden" style={{ pageBreakAfter: 'always' }}>
@@ -180,10 +180,10 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
           <h1 className="text-xl font-bold text-indigo-900 border-b-2 border-indigo-500 inline-block px-8 pb-1">フェイスシート（基本情報）</h1>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-4">
           <section className="pdf-avoid-break">
             <SectionTitle title="1. 相談受付・本人基本情報" pageNumber={1} />
-            <div className="grid grid-cols-3 gap-4 mb-2">
+            <div className="grid grid-cols-3 gap-4 mb-4">
               <InputField label="相談日" value={data.consultationDate} field="consultationDate" type="date" onUpdate={onUpdate} />
               <div className="flex flex-col gap-1">
                 <label className="text-[10px] font-bold text-indigo-700">来所・電話</label>
@@ -197,7 +197,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               <InputField label="把握経路（紹介元等）" value={data.referralPath} field="referralPath" onUpdate={onUpdate} />
             </div>
 
-            <div className="grid grid-cols-4 gap-4 mb-2">
+            <div className="grid grid-cols-4 gap-4 mb-4">
               <div className="col-span-2"><InputField label="氏名" value={data.userName} field="userName" onUpdate={onUpdate} /></div>
               <div className="flex flex-col gap-1">
                 <label className="text-[10px] font-bold text-indigo-700">性別</label>
@@ -210,12 +210,17 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               <InputField label="年齢" value={data.userAge} field="userAge" type="number" onUpdate={onUpdate} />
             </div>
 
-            <div className="grid grid-cols-4 gap-4 mb-2">
+            <div className="grid grid-cols-4 gap-4 mb-4">
               <div className="col-span-2"><InputField label="生年月日" value={data.userDob} field="userDob" type="date" onUpdate={onUpdate} /></div>
               <div className="col-span-2"><InputField label="連絡先 (TEL/FAX)" value={data.userTel} field="userTel" onUpdate={onUpdate} /></div>
             </div>
 
-            <div className="mb-2"><InputField label="住所" value={data.userAddress} field="userAddress" onUpdate={onUpdate} /></div>
+            <div className="mb-4"><InputField label="住所" value={data.userAddress} field="userAddress" onUpdate={onUpdate} /></div>
+
+            <div className="grid grid-cols-2 gap-4 mb-4">
+              <InputField label="緊急連絡先1" value={data.emergencyContact1} field="emergencyContact1" onUpdate={onUpdate} />
+              <InputField label="緊急連絡先2" value={data.emergencyContact2} field="emergencyContact2" onUpdate={onUpdate} />
+            </div>
 
             <div className="grid grid-cols-4 gap-4">
               <div className="flex flex-col gap-1">
@@ -240,7 +245,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
 
           <section className="pdf-avoid-break">
             <SectionTitle title="2. 家族の情報" />
-            <div className="overflow-x-auto mb-1">
+            <div className="overflow-x-auto mb-4">
               <table className="min-w-full border-collapse border border-indigo-200 text-xs">
                 <thead className="bg-indigo-50 text-indigo-900">
                   <tr>
@@ -252,7 +257,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {(data.familyMembers || []).map((m, idx) => (
+                  {data.familyMembers.map((m, idx) => (
                     <tr key={idx}>
                       <td className="border border-indigo-200 p-1 text-center">
                         <input
@@ -287,7 +292,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
 
           <section className="pdf-avoid-break">
             <SectionTitle title="3. 現在利用中のサービス" />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="flex flex-col">
                 <label className="text-[10px] font-bold text-indigo-700 block mb-1">フォーマルサービス（介護保険等）</label>
                 <textarea className="w-full border border-indigo-200 rounded p-2 text-sm h-16 resize-none bg-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-200 outline-none transition-colors" value={data.formalService} onChange={(e) => onUpdate('formalService', e.target.value)} placeholder="例：訪問介護、通所介護、福祉用具貸与など" />
@@ -298,7 +303,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[220px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[150px]">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-1">
                   <label className="text-[10px] font-bold text-indigo-700 block truncate">ジェノグラム（家系図）</label>
@@ -307,7 +312,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
                   </a>
                 </div>
                 <div
-                  className={`border-2 border-dashed rounded-xl flex-1 min-h-0 flex flex-col items-center justify-center relative overflow-hidden transition-all duration-200 cursor-pointer group
+                  className={`border-2 border-dashed rounded-xl flex-1 min-h-0 flex flex-col items-center justify-center relative overflow-hidden transition-all duration-200 cursor-pointer
                     ${dragTarget === 'genogram' ? 'border-indigo-500 bg-indigo-100 scale-[1.02]' : 'border-indigo-200 bg-indigo-50/50'}
                   `}
                   onClick={() => document.getElementById('genogram-input')?.click()}
@@ -347,10 +352,10 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
           <h1 className="text-xl font-bold text-indigo-900 border-b-2 border-indigo-500 inline-block px-8 pb-1">フェイスシート（身体状況・環境）</h1>
         </div>
 
-        <div className="space-y-2">
+        <div className="space-y-4">
           <section className="pdf-avoid-break">
             <SectionTitle title="4. 日常生活の自立判定・健康状態" pageNumber={2} />
-            <div className="grid grid-cols-2 gap-4 mb-2">
+            <div className="grid grid-cols-2 gap-4 mb-4">
               <div className="flex flex-col gap-1">
                 <label className="text-[10px] font-bold text-indigo-700">障害高齢者の日常生活自立度</label>
                 <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.physicalIndependence} onChange={(e) => onUpdate('physicalIndependence', e.target.value)}>
@@ -373,14 +378,14 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-4 mb-2">
+            <div className="grid grid-cols-4 gap-4 mb-4">
               <InputField label="身長(cm)" value={data.height} field="height" type="number" onUpdate={onUpdate} />
               <InputField label="体重(kg)" value={data.weight} field="weight" type="number" onUpdate={onUpdate} />
               <InputField label="BMI" value={data.bmi} field="bmi" onUpdate={onUpdate} />
               <InputField label="血圧" value={data.bloodPressure} field="bloodPressure" onUpdate={onUpdate} />
             </div>
 
-            <div className="grid grid-cols-1 gap-4 mb-2">
+            <div className="grid grid-cols-1 gap-4 mb-4">
               <div className="grid grid-cols-3 gap-4">
                 <InputField label="医療機関名" value={data.hospitalName} field="hospitalName" onUpdate={onUpdate} />
                 <InputField label="医師名" value={data.doctorName} field="doctorName" onUpdate={onUpdate} />
@@ -388,14 +393,14 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 mb-2">
+            <div className="grid grid-cols-1 gap-4 mb-4">
               <div className="flex flex-col gap-1">
                 <label className="text-[10px] font-bold text-indigo-700">既往歴・主傷歴</label>
                 <textarea className="border border-indigo-200 rounded p-2 text-sm h-12 resize-none bg-transparent focus:border-indigo-500 outline-none transition-colors" value={data.medicalHistory} onChange={(e) => onUpdate('medicalHistory', e.target.value)} />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mb-2">
+            <div className="grid grid-cols-2 gap-4 mb-4">
               <SelectWithDetail label="麻痺・拘縮" value={data.paralysisContracture} onChange={(val) => onUpdate('paralysisContracture', val)} />
               <SelectWithDetail label="痛み・しびれ" value={data.painNumbness} onChange={(val) => onUpdate('painNumbness', val)} />
             </div>
@@ -421,7 +426,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
 
           <section className="pdf-avoid-break">
             <SectionTitle title="5. 生活・居住環境" />
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-2">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-4">
               <div className="flex flex-col gap-1">
                 <label className="text-[10px] font-bold text-indigo-700">居住形態</label>
                 <select className="border-b border-indigo-200 outline-none text-xs py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.housingType} onChange={(e) => onUpdate('housingType', e.target.value)}>
@@ -445,7 +450,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 mb-2">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 mb-4">
               <div className="flex flex-col gap-1">
                 <label className="text-[10px] font-bold text-indigo-700">便所</label>
                 <select className="border-b border-indigo-200 outline-none text-xs py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.toiletType} onChange={(e) => onUpdate('toiletType', e.target.value)}><option value="洋式">洋式</option><option value="和式">和式</option><option value="ポータブル">ポータブル</option></select>
@@ -460,7 +465,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[220px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[220px] mb-4">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-1">
                   <label className="text-[10px] font-bold text-indigo-700 block truncate">間取り図</label>
@@ -469,7 +474,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
                   </a>
                 </div>
                 <div
-                  className={`border-2 border-dashed rounded-xl flex-1 min-h-0 flex items-center justify-center relative transition-all duration-200 cursor-pointer group
+                  className={`border-2 border-dashed rounded-xl flex-1 min-h-0 flex items-center justify-center relative transition-all duration-200 cursor-pointer
                     ${dragTarget === 'floor' ? 'border-indigo-500 bg-indigo-100' : 'border-indigo-200 bg-indigo-50/50'}
                   `}
                   onClick={() => document.getElementById('floorplan-input')?.click()}

@@ -57,12 +57,17 @@ const faceSheetPartialSchema = {
     physicalIndependence: { type: Type.STRING, description: "障害高齢者の日常生活自立度（J1, J2, A1, A2, B1, B2, C1, C2のいずれか）" },
     cognitiveIndependence: { type: Type.STRING, description: "認知症高齢者の日常生活自立度（自立, I, IIa, IIb, IIIa, IIIb, IV, Mのいずれか）" },
     medicationStatus: { type: Type.STRING, description: "服薬管理状況（自立, 家族管理, 訪問薬剤師, 一部介助, 全介助のいずれか）" },
+    infections: { type: Type.STRING, description: "感染症の有無（B型・C型肝炎、梅毒、疥癬など）" },
+    allergies: { type: Type.STRING, description: "アレルギー（食べ物、薬剤など）" },
+    bpsdSymptoms: { type: Type.STRING, description: "認知症の具体的症状（BPSD：火の不始末、不穏、徘徊など）" },
     currentSituation: { type: Type.STRING, description: "現在の生活状況" },
     serviceUtilization: { type: Type.STRING, description: "利用している介護サービス・社会資源" },
     housingType: { type: Type.STRING, description: "居住形態（持ち家(戸建), 持ち家(集合), 借家, 公営住宅, その他）" },
     toiletType: { type: Type.STRING, description: "便所（洋式, 和式, ポータブル）" },
     hasSteps: { type: Type.STRING, description: "段差（無, 有(各所にあり), 有(一部あり)）" },
-    hasRenovation: { type: Type.STRING, description: "住宅改修（無, 有(手すり等), 予定あり）" }
+    hasRenovation: { type: Type.STRING, description: "住宅改修（無, 有(手すり等), 予定あり）" },
+    formalService: { type: Type.STRING, description: "現在使用しているフォーマルサービス（介護保険サービス等）" },
+    informalService: { type: Type.STRING, description: "現在使用しているインフォーマルサービス（配食、ボランティア、見守り、近隣の協力等）" }
   }
 };
 
@@ -92,8 +97,8 @@ const carePlanSchema = {
         type: Type.OBJECT,
         properties: {
           need: { type: Type.STRING, description: "解決すべき課題" },
-          longTermGoal: { type: Type.STRING, description: "長期目標（期間を含めないこと。例：△6か月後に歩行が安定する→○歩行が安定する）" },
-          shortTermGoal: { type: Type.STRING, description: "短期目標（期間を含めないこと。例：△3か月後に杖歩行ができる→○杖歩行ができる）" },
+          longTermGoal: { type: Type.STRING, description: "長期目標（期日は絶対に入れない。例：△6か月後に〜できる→○〜できる）" },
+          shortTermGoal: { type: Type.STRING, description: "短期目標（期日は絶対に入れない。例：△3か月後に〜できる→○〜できる）" },
           services: {
             type: Type.ARRAY,
             items: {
@@ -281,6 +286,11 @@ export const generateCarePlanFromAssessment = async (items: AssessmentItem[], fa
 - 現在の生活: ${faceSheet.currentSituation || '記載なし'}
 - 既往歴: ${faceSheet.medicalHistory || '記載なし'}
 - 服薬: ${faceSheet.medicationStatus}
+- 感染症: ${faceSheet.infections || '記載なし'}
+- アレルギー: ${faceSheet.allergies || '記載なし'}
+- 認知症症状(BPSD): ${faceSheet.bpsdSymptoms || '記載なし'}
+- 現在の利用サービス（フォーマル）: ${faceSheet.formalService || '記載なし'}
+- 現在の利用サービス（インフォーマル）: ${faceSheet.informalService || '記載なし'}
 - 本人の意向: ${faceSheet.userAspiration || '記載なし'}
 - 家族の意向: ${faceSheet.familyAspiration || '記載なし'}
 `;
@@ -330,10 +340,11 @@ ${instructions ? `【今回の方針指示・ユーザー要望】\n${instructio
 3. **第2表「解決すべき課題（ニーズ）」**
    - 優先順位の高いものを抽出する。
    - 表現は「〜ができるようになる」「〜を維持する」といったポジティブな表現や、「〜が整う」といった環境調整の視点を含める。
-   - **【厳守】長期目標・短期目標には、期間（「6か月後」「3か月後」「〜月後」など）を絶対に含めないこと**。
-     - ❌ 誤った例：「6か月後に歩行が安定する」「3か月後に手すりを使用して立ち上がりができる」
-     - ✅ 正しい例：「歩行が安定する」「手すりを使用して立ち上がりができる」
-   - 長期目標・短期目標は、実現可能性があり、評価可能な内容にする。
+    - **【最優先・最厳守】目標（長期・短期ともに）には、期日や期間を示す文言（「1か月後に」「3か月後」「6ヶ月後」「〜月までに」「〜日間」など）を絶対に、一文字たりとも含めないこと。**
+      - ❌ 誤った例：「1か月後に体調が安定する」「3か月後に手すりで歩ける」「〜月までに〜ができるようになる」
+      - ✅ 正しい例：「体調が安定する」「手すりを使用して立ち上がりができる」「歩行が安定する」
+    - 「〜か月以内」や「〜を目標に」といった曖昧な期間表現も全て禁止です。純粋な「状態の目標」のみを記述してください。
+    - 長期目標・短期目標は、実現可能性があり、客観的に評価可能な内容にすること。
 
 4. **第2表「サービス内容」**
    - **重要**: 介護ソフト（カイポケ等）に転記しやすいよう、目的語（〜のために）は含めず、**「〜を行う」「〜を確認する」「〜を促す」といった具体的な援助行為のみ**を箇条書きにする。

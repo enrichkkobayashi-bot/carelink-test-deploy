@@ -32,14 +32,15 @@ const App: React.FC = () => {
   );
 
   // Face Sheet State
-  const initialFamily: FamilyMember[] = Array(4).fill({
+  const initialFamily: FamilyMember[] = Array(3).fill({
     name: '',
     address: '',
     age: '',
     gender: '',
     relationship: '',
     tel: '',
-    healthStatus: ''
+    healthStatus: '',
+    isKeyPerson: false
   });
 
   const [faceSheetData, setFaceSheetData] = useState<FaceSheetData>({
@@ -75,6 +76,9 @@ const App: React.FC = () => {
     painNumbness: '',
     medicationStatus: '自立',
     medicationTypes: '',
+    infections: '',
+    allergies: '',
+    bpsdSymptoms: '',
     housingType: '持ち家(戸建)',
     housingOwnership: '',
     hasOwnRoom: '有',
@@ -88,7 +92,9 @@ const App: React.FC = () => {
     footwearStatus: '',
     floorPlanUrl: null,
     currentSituation: '',
-    serviceUtilization: ''
+    serviceUtilization: '',
+    formalService: '',
+    informalService: ''
   });
 
   const [carePlan, setCarePlan] = useState<CarePlan | null>(null);
@@ -366,15 +372,20 @@ const App: React.FC = () => {
       carePeriod: '',
       disabilityLevel: '',
       economicStatus: '',
+      keyPersonName: '',
+      keyPersonRelationship: '',
+      emergencyContact1: undefined,
+      emergencyContact2: undefined,
 
-      familyMembers: Array(4).fill({
+      familyMembers: Array(3).fill({
         name: '',
         address: '',
         age: '',
         gender: '',
         relationship: '',
         tel: '',
-        healthStatus: ''
+        healthStatus: '',
+        isKeyPerson: false
       }),
       genogramUrl: null,
       lifeHistory: '',
@@ -394,6 +405,9 @@ const App: React.FC = () => {
       painNumbness: '',
       medicationStatus: '自立',
       medicationTypes: '',
+      infections: '',
+      allergies: '',
+      bpsdSymptoms: '',
       housingType: '持ち家(戸建)',
       housingOwnership: '',
       hasOwnRoom: '有',
@@ -407,7 +421,9 @@ const App: React.FC = () => {
       footwearStatus: '',
       floorPlanUrl: null,
       currentSituation: '',
-      serviceUtilization: ''
+      serviceUtilization: '',
+      formalService: '',
+      informalService: ''
     });
 
     // Reset Assessment Date
