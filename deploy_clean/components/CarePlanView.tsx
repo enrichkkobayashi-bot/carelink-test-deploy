@@ -41,7 +41,6 @@ const CopyButton: React.FC<{ text: string, small?: boolean }> = ({ text, small =
 };
 
 const CarePlanView: React.FC<CarePlanViewProps> = ({ plan }) => {
-
   return (
     <div className="space-y-10 bg-white p-4 md:p-10 rounded-3xl border border-gray-100 shadow-sm print:shadow-none print:border-none print:p-0">
       <div className="border-b border-gray-200 pb-6 text-center">
@@ -53,7 +52,7 @@ const CarePlanView: React.FC<CarePlanViewProps> = ({ plan }) => {
         <h3 className="text-lg font-bold text-gray-800 bg-gray-50 p-3 rounded-lg border-l-4 border-indigo-600">
           第1表：基本方針・分析
         </h3>
-
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <section className="space-y-3 pdf-avoid-break">
             <div className="flex justify-between items-center">
@@ -81,7 +80,7 @@ const CarePlanView: React.FC<CarePlanViewProps> = ({ plan }) => {
         <h3 className="text-lg font-bold text-gray-800 bg-gray-50 p-3 rounded-lg border-l-4 border-emerald-600">
           第2表：解決すべき課題と目標
         </h3>
-
+        
         {plan.planItems.map((item, idx) => (
           <div key={idx} className="border border-gray-200 rounded-2xl overflow-hidden shadow-sm pdf-avoid-break">
             <div className="bg-emerald-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
@@ -93,7 +92,7 @@ const CarePlanView: React.FC<CarePlanViewProps> = ({ plan }) => {
               </h4>
               <CopyButton text={item.need} />
             </div>
-
+            
             <div className="grid grid-cols-1 md:grid-cols-2 border-b border-gray-100">
               <div className="p-4 border-r border-gray-100 flex flex-col">
                 <div className="flex justify-between items-center mb-1">

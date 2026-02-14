@@ -40,6 +40,7 @@ export interface FamilyMember {
   relationship: string;
   tel: string;
   healthStatus: string;
+  isKeyPerson: boolean;   // キーパーソンかどうか
 }
 
 export interface FaceSheetData {
@@ -78,6 +79,9 @@ export interface FaceSheetData {
   painNumbness: string;
   medicationStatus: string;
   medicationTypes: string;
+  infections: string;      // 感染症の有無
+  allergies: string;       // アレルギー
+  bpsdSymptoms: string;    // 認知症の具体的症状（BPSD）
 
   // Block 3
   housingType: string;
@@ -94,6 +98,8 @@ export interface FaceSheetData {
   floorPlanUrl: string | null;
   currentSituation: string;    // 現在の生活状況
   serviceUtilization: string;  // 利用サービス
+  formalService: string;       // 現在使用しているフォーマルサービス
+  informalService: string;     // 現在使用しているインフォーマルサービス
 }
 
 export enum AppStatus {
