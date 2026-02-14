@@ -438,10 +438,6 @@ const App: React.FC = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-50 flex-col">
-      {/* デバッグ用バナー */}
-      <div className="bg-red-600 text-white text-center py-2 font-bold text-lg no-print">
-        DEPLO_CHECK_V10_ACTIVE
-      </div>
       <div className="flex flex-1">
         <Sidebar />
         <div className="flex-1 w-0 flex flex-col min-h-screen bg-white text-gray-800 relative">
