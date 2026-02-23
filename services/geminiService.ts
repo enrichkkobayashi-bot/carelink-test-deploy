@@ -42,7 +42,7 @@ const assessmentSchema = {
       id: { type: Type.STRING },
       situation: { type: Type.STRING, description: "具体的な状況の記述（端的に1文で）" },
       judgment: { type: Type.STRING, description: "選択肢の中から最も適切な判定" },
-      strengths: { type: Type.STRING, description: "本人の強みやポジティブな要素、社会資源の活用状況（端的に1文で）" }
+      strengths: { type: Type.STRING, description: "本人が現在自分でできていること（残存能力）や具体的動作（端的に1文で）" }
     },
     required: ["id", "situation", "judgment", "strengths"]
   }
@@ -212,7 +212,7 @@ ${structurePrompt}
 【アセスメント出力ルール】
 1. 各項目の「具体的状況」は、短く【1文で端的に】記載してください。
 2. 「判定」は、指定された選択肢の中から最も近いものを厳選してください。
-3. 「強み」は、本人の能力や資源を活かす視点で【1文で短く】記載してください。
+3. 「強み」は、本人が現在【自分自身でできている具体的事項（残存能力）】を【1文で短く】記載してください。
 
 【フェイスシート出力ルール】
 1. 前述の基本情報（氏名、住所、生年月日、年齢、性別、要介護度等）は正確に抽出。
