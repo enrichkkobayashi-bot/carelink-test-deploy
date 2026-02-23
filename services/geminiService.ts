@@ -51,6 +51,14 @@ const assessmentSchema = {
 const faceSheetPartialSchema = {
   type: Type.OBJECT,
   properties: {
+    userName: { type: Type.STRING, description: "利用者氏名（保険証等から正確に抽出）" },
+    userGender: { type: Type.STRING, description: "性別（男, 女のいずれか）" },
+    userDob: { type: Type.STRING, description: "生年月日（YYYY-MM-DD形式、保険証等から正確に抽出）" },
+    userAge: { type: Type.STRING, description: "年齢" },
+    userAddress: { type: Type.STRING, description: "住所（保険証等から正確に抽出）" },
+    userTel: { type: Type.STRING, description: "連絡先電話番号" },
+    careLevel: { type: Type.STRING, description: "要介護度（要支援1, 要支援2, 要介護1, 要介護2, 要介護3, 要介護4, 要介護5, 自立, 未申請 のいずれか。保険証の記載や文脈から判別）" },
+    carePeriod: { type: Type.STRING, description: "認定期限（YYYY-MM-DD形式、保険証等から正確に抽出）" },
     medicalHistory: { type: Type.STRING, description: "既往歴・主傷病" },
     userAspiration: { type: Type.STRING, description: "本人の意向・希望" },
     familyAspiration: { type: Type.STRING, description: "家族の意向・要望" },
@@ -186,23 +194,30 @@ export const analyzeAssessmentAudio = async (
 
     const totalItems = ASSESSMENT_STRUCTURE.length;
     const prompt = `
-あなたは極めて優秀なケアマネジャーです。提供された「音声データ」または「資料（PDF・テキスト等）」、および「相談記録（メモ）」から、アセスメント項目（全${totalItems}項目）およびフェイスシート（基本情報）の分析を一括で行ってください。
+あなたは、介護現場での事務とアセスメントを極めて正確に行う「ベテランケアマネジャー」兼「優秀なデータ入力オペレーター」です。
 
-【重要：出力遵守事項】
-1. 定義された全${totalItems}項目を、ID順に漏れなく全て出力してください。途中で出力を止めないでください。
-2. 情報が不足している項目についても、スキップせず、文脈から推測される内容か、あるいは「情報なし」として判定を選択してください。
+【最優先任務：画像OCRと基本情報抽出】
+提供された資料の中に「介護保険証」や「公的書類」の画像が含まれている場合、以下の情報を【最優先】かつ【一文字も間違えず正確に】抽出してフェイスシートに反映してください。
+・氏名（userName）
+・住所（userAddress）
+・生年月日（userDob）: YYYY-MM-DD形式
+・年齢（userAge）
+・性別（userGender）: 「男」または「女」
+・要介護度（careLevel）: 保険証の記載通り。申請中の場合は文脈から「要介護●相当」であっても最も近いものを選択。
+・認定期限（carePeriod）: YYYY-MM-DD形式
+
+【アセスメント項目定義（全${totalItems}項目）】
+${structurePrompt}
 
 【アセスメント出力ルール】
-1. 「具体的状況」は、短く【1文で端的に】記載してください。
-2. 「判定」は、指定された選択肢の中から最も近いものを選んでください。
-3. 「強み」は、ケアプランに活かせるプラス要素を【1文で短く】記載してください。
+1. 各項目の「具体的状況」は、短く【1文で端的に】記載してください。
+2. 「判定」は、指定された選択肢の中から最も近いものを厳選してください。
+3. 「強み」は、本人の能力や資源を活かす視点で【1文で短く】記載してください。
 
 【フェイスシート出力ルール】
-入内容から読み取れる範囲で、既往歴、意向、自立度、居住環境などの基本情報を抽出してください。
-読み取れない項目は空欄（nullまたは空文字）にしてください。
-
-【アセスメント項目定義】
-${structurePrompt}
+1. 前述の基本情報（氏名、住所、生年月日、年齢、性別、要介護度等）は正確に抽出。
+2. 既往歴、意向、自立度、居住環境なども読み取れる範囲で抽出。
+3. 読み取ることができない項目のみ空欄（nullまたは空文字）にしてください。
 
 必ずJSONフォーマットで、指定されたスキーマに従って出力してください。
 `;

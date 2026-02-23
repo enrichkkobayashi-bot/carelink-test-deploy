@@ -649,8 +649,11 @@ const App: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* 印刷用ヘッダー & 入力エリア */}
-                  <div className="bg-gray-50/50 p-4 rounded-xl border border-gray-100 mb-6 print:border-none print:p-0 print:bg-white">
+                  {/* 印刷用領域の開始 */}
+                  <div className="bg-gray-50/50 p-6 rounded-xl border border-gray-100 mb-6 print:border-none print:p-0 print:bg-white">
+                    <div className="text-center mb-8">
+                      <h1 className="text-xl font-bold text-indigo-900 border-b-2 border-indigo-500 inline-block px-12 pb-1">アセスメントシート</h1>
+                    </div>
                     <div className="flex flex-wrap gap-6 items-center">
                       <div className="flex flex-col gap-1 w-64">
                         <label className="text-xs font-bold text-gray-500 uppercase">利用者名</label>
