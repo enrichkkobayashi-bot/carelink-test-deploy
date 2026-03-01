@@ -21,10 +21,10 @@ const SelectWithDetail = ({ label, value, onChange }: { label: string, value: st
 
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-[10px] font-bold text-indigo-700">{label}</label>
+      <label className="text-xs font-bold text-indigo-700">{label}</label>
       <div className="flex gap-2">
         <select
-          className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors w-20"
+          className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors w-20"
           value={hasIssue ? '有' : '無'}
           onChange={(e) => handleChange(e.target.value === '有', detail)}
         >
@@ -34,7 +34,7 @@ const SelectWithDetail = ({ label, value, onChange }: { label: string, value: st
         {hasIssue && (
           <input
             type="text"
-            className="border-b border-indigo-200 focus:border-indigo-500 outline-none text-sm py-1 bg-transparent transition-colors flex-1"
+            className="border-b border-indigo-200 focus:border-indigo-500 outline-none text-base py-1 bg-transparent transition-colors flex-1"
             value={detail}
             onChange={(e) => handleChange(true, e.target.value)}
             placeholder="詳細を入力"
@@ -67,10 +67,10 @@ const DropdownAndText = ({ label, value, options, onChange }: { label: string, v
 
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-[10px] font-bold text-indigo-700">{label}</label>
+      <label className="text-xs font-bold text-indigo-700">{label}</label>
       <div className="flex gap-2">
         <select
-          className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors"
+          className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors"
           value={selectedOption}
           onChange={(e) => handleSelectChange(e.target.value)}
         >
@@ -81,7 +81,7 @@ const DropdownAndText = ({ label, value, options, onChange }: { label: string, v
         </select>
         <input
           type="text"
-          className="border-b border-indigo-200 focus:border-indigo-500 outline-none text-sm py-1 bg-transparent transition-colors flex-1"
+          className="border-b border-indigo-200 focus:border-indigo-500 outline-none text-base py-1 bg-transparent transition-colors flex-1"
           value={detail}
           onChange={(e) => handleTextChange(e.target.value)}
           placeholder="詳細を入力"
@@ -93,10 +93,10 @@ const DropdownAndText = ({ label, value, options, onChange }: { label: string, v
 
 const InputField = ({ label, value, field, onUpdate, type = "text", placeholder = "" }: { label: string, value: string, field: keyof FaceSheetData, onUpdate: (field: keyof FaceSheetData, value: any) => void, type?: string, placeholder?: string }) => (
   <div className="flex flex-col gap-1">
-    <label className="text-[10px] font-bold text-indigo-700">{label}</label>
+    <label className="text-xs font-bold text-indigo-700">{label}</label>
     <input
       type={type}
-      className="border-b border-indigo-200 focus:border-indigo-500 outline-none text-sm py-1 bg-transparent transition-colors"
+      className="border-b border-indigo-200 focus:border-indigo-500 outline-none text-base py-1 bg-transparent transition-colors"
       value={value}
       onChange={(e) => onUpdate(field, e.target.value)}
       placeholder={placeholder}
@@ -106,8 +106,8 @@ const InputField = ({ label, value, field, onUpdate, type = "text", placeholder 
 
 const SectionTitle = ({ title, pageNumber }: { title: string, pageNumber?: number }) => (
   <div className="flex justify-between items-center bg-indigo-100 px-4 py-2 rounded mb-2">
-    <h3 className="text-sm font-bold text-indigo-900">{title}</h3>
-    {pageNumber && <span className="text-[10px] text-indigo-400">Page {pageNumber} / 2</span>}
+    <h3 className="text-base font-bold text-indigo-900">{title}</h3>
+    {pageNumber && <span className="text-xs text-indigo-400">Page {pageNumber} / 2</span>}
   </div>
 );
 
@@ -177,7 +177,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
       {/* PAGE 1 */}
       <div className="w-[210mm] h-[296mm] p-[10mm] relative box-border overflow-hidden" style={{ pageBreakAfter: 'always' }}>
         <div className="text-center mb-4">
-          <h1 className="text-xl font-bold text-indigo-900 border-b-2 border-indigo-500 inline-block px-8 pb-1">フェイスシート（基本情報）</h1>
+          <h1 className="text-2xl font-bold text-indigo-900 border-b-2 border-indigo-500 inline-block px-8 pb-1">フェイスシート（基本情報）</h1>
         </div>
 
         <div className="space-y-2">
@@ -186,8 +186,8 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
             <div className="grid grid-cols-3 gap-4 mb-2">
               <InputField label="相談日" value={data.consultationDate} field="consultationDate" type="date" onUpdate={onUpdate} />
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">来所・電話</label>
-                <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.consultationMethod} onChange={(e) => onUpdate('consultationMethod', e.target.value)}>
+                <label className="text-xs font-bold text-indigo-700">来所・電話</label>
+                <select className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.consultationMethod} onChange={(e) => onUpdate('consultationMethod', e.target.value)}>
                   <option value="">選択</option>
                   <option value="来所">来所</option>
                   <option value="電話">電話</option>
@@ -200,8 +200,8 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
             <div className="grid grid-cols-4 gap-4 mb-2">
               <div className="col-span-2"><InputField label="氏名" value={data.userName} field="userName" onUpdate={onUpdate} /></div>
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">性別</label>
-                <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.userGender} onChange={(e) => onUpdate('userGender', e.target.value)}>
+                <label className="text-xs font-bold text-indigo-700">性別</label>
+                <select className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.userGender} onChange={(e) => onUpdate('userGender', e.target.value)}>
                   <option value="">選択</option>
                   <option value="男">男</option>
                   <option value="女">女</option>
@@ -219,8 +219,8 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
 
             <div className="grid grid-cols-4 gap-4">
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">要介護度</label>
-                <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.careLevel} onChange={(e) => onUpdate('careLevel', e.target.value)}>
+                <label className="text-xs font-bold text-indigo-700">要介護度</label>
+                <select className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.careLevel} onChange={(e) => onUpdate('careLevel', e.target.value)}>
                   <option value="未申請">未申請</option>
                   <option value="自立">自立</option>
                   <option value="要支援1">要支援1</option>
@@ -241,7 +241,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
           <section className="pdf-avoid-break">
             <SectionTitle title="2. 家族の情報" />
             <div className="overflow-x-auto mb-1">
-              <table className="min-w-full border-collapse border border-indigo-200 text-xs">
+              <table className="min-w-full border-collapse border border-indigo-200 text-sm">
                 <thead className="bg-indigo-50 text-indigo-900">
                   <tr>
                     <th className="border border-indigo-200 px-1 py-1 w-8">KP</th>
@@ -265,7 +265,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
                       </td>
                       <td className="border border-indigo-200 p-1">
                         <input className="w-full outline-none mb-1 font-bold text-gray-800 bg-transparent" value={m.name} onChange={(e) => handleFamilyUpdate(idx, 'name', e.target.value)} placeholder="氏名" />
-                        <input className="w-full outline-none text-[10px] text-gray-500 bg-transparent" value={m.relationship} onChange={(e) => handleFamilyUpdate(idx, 'relationship', e.target.value)} placeholder="続柄" />
+                        <input className="w-full outline-none text-xs text-gray-500 bg-transparent" value={m.relationship} onChange={(e) => handleFamilyUpdate(idx, 'relationship', e.target.value)} placeholder="続柄" />
                       </td>
                       <td className="border border-indigo-200 p-1">
                         <input className="w-full outline-none mb-1 bg-transparent" value={m.age} onChange={(e) => handleFamilyUpdate(idx, 'age', e.target.value)} placeholder="年齢" />
@@ -289,19 +289,19 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
             <SectionTitle title="3. 現在利用中のサービス" />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
               <div className="flex flex-col">
-                <label className="text-[10px] font-bold text-indigo-700 block mb-1">フォーマルサービス（介護保険等）</label>
-                <textarea className="w-full border border-indigo-200 rounded p-2 text-sm h-16 resize-none bg-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-200 outline-none transition-colors" value={data.formalService} onChange={(e) => onUpdate('formalService', e.target.value)} placeholder="例：訪問介護、通所介護、福祉用具貸与など" />
+                <label className="text-xs font-bold text-indigo-700 block mb-1">フォーマルサービス（介護保険等）</label>
+                <textarea className="w-full border border-indigo-200 rounded p-2 text-base h-16 resize-none bg-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-200 outline-none transition-colors" value={data.formalService} onChange={(e) => onUpdate('formalService', e.target.value)} placeholder="例：訪問介護、通所介護、福祉用具貸与など" />
               </div>
               <div className="flex flex-col">
-                <label className="text-[10px] font-bold text-indigo-700 block mb-1">インフォーマルサービス（社会資源等）</label>
-                <textarea className="w-full border border-indigo-200 rounded p-2 text-sm h-16 resize-none bg-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-200 outline-none transition-colors" value={data.informalService} onChange={(e) => onUpdate('informalService', e.target.value)} placeholder="例：配食、ボランティア、家族・近隣の協力など" />
+                <label className="text-xs font-bold text-indigo-700 block mb-1">インフォーマルサービス（社会資源等）</label>
+                <textarea className="w-full border border-indigo-200 rounded p-2 text-base h-16 resize-none bg-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-200 outline-none transition-colors" value={data.informalService} onChange={(e) => onUpdate('informalService', e.target.value)} placeholder="例：配食、ボランティア、家族・近隣の協力など" />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[220px]">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-1">
-                  <label className="text-[10px] font-bold text-indigo-700 block truncate">ジェノグラム（家系図）</label>
+                  <label className="text-xs font-bold text-indigo-700 block truncate">ジェノグラム（家系図）</label>
                   <a href="https://genogram-architect-copy.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[10px] text-indigo-500 hover:text-indigo-700 underline flex items-center gap-1 print:hidden">
                     <span>作成ツール</span>
                   </a>
@@ -322,18 +322,18 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
                         <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 18L18 6M6 6l12 12" /></svg>
                       </button>
                     </>
-                  ) : <span className="text-[10px] text-indigo-400">画像ドロップ</span>}
+                  ) : <span className="text-xs text-indigo-400">画像ドロップ</span>}
                   <input id="genogram-input" type="file" hidden accept="image/*" onChange={(e) => handleImageUpload('genogramUrl', e)} />
                 </div>
               </div>
               <div className="flex flex-col gap-2 h-full">
                 <div className="h-1/2 flex flex-col">
-                  <label className="text-[10px] font-bold text-indigo-700 block mb-1 truncate">本人・家族の意向（本人）</label>
-                  <textarea className="w-full border border-indigo-200 rounded p-1 text-[11px] flex-1 resize-none bg-transparent outline-none transition-colors" value={data.userAspiration} onChange={(e) => onUpdate('userAspiration', e.target.value)} />
+                  <label className="text-xs font-bold text-indigo-700 block mb-1 truncate">本人・家族の意向（本人）</label>
+                  <textarea className="w-full border border-indigo-200 rounded p-1 text-sm flex-1 resize-none bg-transparent outline-none transition-colors" value={data.userAspiration} onChange={(e) => onUpdate('userAspiration', e.target.value)} />
                 </div>
                 <div className="h-1/2 flex flex-col">
-                  <label className="text-[10px] font-bold text-indigo-700 block mb-1 truncate">本人・家族の意向（家族）</label>
-                  <textarea className="w-full border border-indigo-200 rounded p-1 text-[11px] flex-1 resize-none bg-transparent outline-none transition-colors" value={data.familyAspiration} onChange={(e) => onUpdate('familyAspiration', e.target.value)} />
+                  <label className="text-xs font-bold text-indigo-700 block mb-1 truncate">本人・家族の意向（家族）</label>
+                  <textarea className="w-full border border-indigo-200 rounded p-1 text-sm flex-1 resize-none bg-transparent outline-none transition-colors" value={data.familyAspiration} onChange={(e) => onUpdate('familyAspiration', e.target.value)} />
                 </div>
               </div>
             </div>
@@ -344,7 +344,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
       {/* PAGE 2 */}
       <div className="w-[210mm] h-[296mm] p-[10mm] relative box-border overflow-hidden">
         <div className="text-center mb-4">
-          <h1 className="text-xl font-bold text-indigo-900 border-b-2 border-indigo-500 inline-block px-8 pb-1">フェイスシート（身体状況・環境）</h1>
+          <h1 className="text-2xl font-bold text-indigo-900 border-b-2 border-indigo-500 inline-block px-8 pb-1">フェイスシート（身体状況・環境）</h1>
         </div>
 
         <div className="space-y-2">
@@ -352,8 +352,8 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
             <SectionTitle title="4. 日常生活の自立判定・健康状態" pageNumber={2} />
             <div className="grid grid-cols-2 gap-4 mb-2">
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">障害高齢者の日常生活自立度</label>
-                <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.physicalIndependence} onChange={(e) => onUpdate('physicalIndependence', e.target.value)}>
+                <label className="text-xs font-bold text-indigo-700">障害高齢者の日常生活自立度</label>
+                <select className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.physicalIndependence} onChange={(e) => onUpdate('physicalIndependence', e.target.value)}>
                   <option value="">選択</option>
                   <option value="J1">J1</option><option value="J2">J2</option>
                   <option value="A1">A1</option><option value="A2">A2</option>
@@ -362,8 +362,8 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
                 </select>
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">認知症高齢者の日常生活自立度</label>
-                <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.cognitiveIndependence} onChange={(e) => onUpdate('cognitiveIndependence', e.target.value)}>
+                <label className="text-xs font-bold text-indigo-700">認知症高齢者の日常生活自立度</label>
+                <select className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.cognitiveIndependence} onChange={(e) => onUpdate('cognitiveIndependence', e.target.value)}>
                   <option value="">選択</option>
                   <option value="自立">自立</option><option value="I">I</option>
                   <option value="IIa">IIa</option><option value="IIb">IIb</option>
@@ -390,8 +390,8 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
 
             <div className="grid grid-cols-1 gap-4 mb-2">
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">既往歴・主傷歴</label>
-                <textarea className="border border-indigo-200 rounded p-2 text-sm h-12 resize-none bg-transparent focus:border-indigo-500 outline-none transition-colors" value={data.medicalHistory} onChange={(e) => onUpdate('medicalHistory', e.target.value)} />
+                <label className="text-xs font-bold text-indigo-700">既往歴・主傷歴</label>
+                <textarea className="border border-indigo-200 rounded p-2 text-base h-12 resize-none bg-transparent focus:border-indigo-500 outline-none transition-colors" value={data.medicalHistory} onChange={(e) => onUpdate('medicalHistory', e.target.value)} />
               </div>
             </div>
 
@@ -423,8 +423,8 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
             <SectionTitle title="5. 生活・居住環境" />
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-2">
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">居住形態</label>
-                <select className="border-b border-indigo-200 outline-none text-xs py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.housingType} onChange={(e) => onUpdate('housingType', e.target.value)}>
+                <label className="text-xs font-bold text-indigo-700">居住形態</label>
+                <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.housingType} onChange={(e) => onUpdate('housingType', e.target.value)}>
                   <option value="持ち家(戸建)">持ち家(戸建)</option>
                   <option value="持ち家(集合)">持ち家(集合)</option>
                   <option value="借家">借家</option>
@@ -432,38 +432,38 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
                 </select>
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">自室</label>
-                <select className="border-b border-indigo-200 outline-none text-xs py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.hasOwnRoom} onChange={(e) => onUpdate('hasOwnRoom', e.target.value)}><option value="有">有</option><option value="無">無</option></select>
+                <label className="text-xs font-bold text-indigo-700">自室</label>
+                <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.hasOwnRoom} onChange={(e) => onUpdate('hasOwnRoom', e.target.value)}><option value="有">有</option><option value="無">無</option></select>
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">日中独居</label>
-                <select className="border-b border-indigo-200 outline-none text-xs py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.isSoloDuringDay} onChange={(e) => onUpdate('isSoloDuringDay', e.target.value)}><option value="無">無</option><option value="有">有</option></select>
+                <label className="text-xs font-bold text-indigo-700">日中独居</label>
+                <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.isSoloDuringDay} onChange={(e) => onUpdate('isSoloDuringDay', e.target.value)}><option value="無">無</option><option value="有">有</option></select>
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">浴室</label>
-                <select className="border-b border-indigo-200 outline-none text-xs py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.hasBath} onChange={(e) => onUpdate('hasBath', e.target.value)}><option value="有">有</option><option value="無">無</option></select>
+                <label className="text-xs font-bold text-indigo-700">浴室</label>
+                <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.hasBath} onChange={(e) => onUpdate('hasBath', e.target.value)}><option value="有">有</option><option value="無">無</option></select>
               </div>
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 mb-2">
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">便所</label>
-                <select className="border-b border-indigo-200 outline-none text-xs py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.toiletType} onChange={(e) => onUpdate('toiletType', e.target.value)}><option value="洋式">洋式</option><option value="和式">和式</option><option value="ポータブル">ポータブル</option></select>
+                <label className="text-xs font-bold text-indigo-700">便所</label>
+                <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.toiletType} onChange={(e) => onUpdate('toiletType', e.target.value)}><option value="洋式">洋式</option><option value="和式">和式</option><option value="ポータブル">ポータブル</option></select>
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">段差</label>
-                <select className="border-b border-indigo-200 outline-none text-xs py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.hasSteps} onChange={(e) => onUpdate('hasSteps', e.target.value)}><option value="無">無</option><option value="有(各所にあり)">有(各所にあり)</option><option value="有(一部あり)">有(一部あり)</option></select>
+                <label className="text-xs font-bold text-indigo-700">段差</label>
+                <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.hasSteps} onChange={(e) => onUpdate('hasSteps', e.target.value)}><option value="無">無</option><option value="有(各所にあり)">有(各所にあり)</option><option value="有(一部あり)">有(一部あり)</option></select>
               </div>
               <div className="flex flex-col gap-1">
-                <label className="text-[10px] font-bold text-indigo-700">住宅改修</label>
-                <select className="border-b border-indigo-200 outline-none text-xs py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.hasRenovation} onChange={(e) => onUpdate('hasRenovation', e.target.value)}><option value="無">無</option><option value="有(手すり等)">有(手すり等)</option><option value="予定あり">予定あり</option></select>
+                <label className="text-xs font-bold text-indigo-700">住宅改修</label>
+                <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.hasRenovation} onChange={(e) => onUpdate('hasRenovation', e.target.value)}><option value="無">無</option><option value="有(手すり等)">有(手すり等)</option><option value="予定あり">予定あり</option></select>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[220px]">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-1">
-                  <label className="text-[10px] font-bold text-indigo-700 block truncate">間取り図</label>
+                  <label className="text-xs font-bold text-indigo-700 block truncate">間取り図</label>
                   <a href="https://care-plan-app-six.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[10px] text-indigo-500 hover:text-indigo-700 underline flex items-center gap-1 print:hidden">
                     <span>作成ツール</span>
                   </a>
@@ -484,18 +484,18 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
                         <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 18L18 6M6 6l12 12" /></svg>
                       </button>
                     </>
-                  ) : <span className="text-[10px] text-indigo-400">画像ドロップ</span>}
+                  ) : <span className="text-xs text-indigo-400">画像ドロップ</span>}
                   <input id="floorplan-input" type="file" hidden accept="image/*" onChange={(e) => handleImageUpload('floorPlanUrl', e)} />
                 </div>
               </div>
               <div className="flex flex-col gap-4 h-full">
                 <div className="h-1/2 flex flex-col">
-                  <label className="text-[10px] font-bold text-indigo-700 block mb-1 text-xs">今までの生活</label>
-                  <textarea className="w-full border border-indigo-200 rounded p-1 text-[11px] flex-1 resize-none bg-transparent outline-none transition-colors" value={data.lifeHistory} onChange={(e) => onUpdate('lifeHistory', e.target.value)} />
+                  <label className="text-xs font-bold text-indigo-700 block mb-1">今までの生活</label>
+                  <textarea className="w-full border border-indigo-200 rounded p-1 text-sm flex-1 resize-none bg-transparent outline-none transition-colors" value={data.lifeHistory} onChange={(e) => onUpdate('lifeHistory', e.target.value)} />
                 </div>
                 <div className="h-1/2 flex flex-col">
-                  <label className="text-[10px] font-bold text-indigo-700 block mb-1 text-xs">現在の生活状況</label>
-                  <textarea className="w-full border border-indigo-200 rounded p-1 text-[11px] flex-1 resize-none bg-transparent outline-none transition-colors" value={data.currentSituation} onChange={(e) => onUpdate('currentSituation', e.target.value)} />
+                  <label className="text-xs font-bold text-indigo-700 block mb-1">現在の生活状況</label>
+                  <textarea className="w-full border border-indigo-200 rounded p-1 text-sm flex-1 resize-none bg-transparent outline-none transition-colors" value={data.currentSituation} onChange={(e) => onUpdate('currentSituation', e.target.value)} />
                 </div>
               </div>
             </div>
