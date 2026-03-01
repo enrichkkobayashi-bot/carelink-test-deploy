@@ -391,7 +391,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
             <div className="grid grid-cols-1 gap-4 mb-6">
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-bold text-indigo-700">既往歴・主傷歴</label>
-                <textarea className="border border-indigo-200 rounded p-2 text-base h-20 resize-none bg-transparent focus:border-indigo-500 outline-none transition-colors" value={data.medicalHistory} onChange={(e) => onUpdate('medicalHistory', e.target.value)} />
+                <textarea className="border border-indigo-200 rounded p-2 text-base h-12 resize-none bg-transparent focus:border-indigo-500 outline-none transition-colors" value={data.medicalHistory} onChange={(e) => onUpdate('medicalHistory', e.target.value)} />
               </div>
             </div>
 
