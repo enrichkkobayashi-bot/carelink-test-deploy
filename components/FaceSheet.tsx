@@ -421,7 +421,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
 
           <section className="pdf-avoid-break">
             <SectionTitle title="5. 生活・居住環境" />
-            <div className="grid grid-cols-2 lg:grid-cols-4 print:grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 print:grid-cols-4 gap-4 mb-6">
               <div className="flex flex-col gap-2">
                 <label className="text-xs font-bold text-indigo-700">居住形態</label>
                 <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.housingType} onChange={(e) => onUpdate('housingType', e.target.value)}>
@@ -445,7 +445,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 print:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-2 lg:grid-cols-3 print:grid-cols-3 gap-4 mb-6">
               <div className="flex flex-col gap-2">
                 <label className="text-xs font-bold text-indigo-700">便所</label>
                 <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.toiletType} onChange={(e) => onUpdate('toiletType', e.target.value)}><option value="洋式">洋式</option><option value="和式">和式</option><option value="ポータブル">ポータブル</option></select>
@@ -460,7 +460,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[320px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[220px]">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-1">
                   <label className="text-xs font-bold text-indigo-700 block truncate">間取り図</label>
