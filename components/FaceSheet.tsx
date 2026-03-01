@@ -24,7 +24,7 @@ const SelectWithDetail = ({ label, value, onChange }: { label: string, value: st
       <label className="text-xs font-bold text-indigo-700">{label}</label>
       <div className="flex gap-2">
         <select
-          className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors w-20"
+          className="border-b border-indigo-300 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors w-20 print:border-indigo-400"
           value={hasIssue ? '有' : '無'}
           onChange={(e) => handleChange(e.target.value === '有', detail)}
         >
@@ -34,7 +34,7 @@ const SelectWithDetail = ({ label, value, onChange }: { label: string, value: st
         {hasIssue && (
           <input
             type="text"
-            className="border-b border-indigo-200 focus:border-indigo-500 outline-none text-base py-1 bg-transparent transition-colors flex-1"
+            className="border-b border-indigo-300 focus:border-indigo-500 outline-none text-base py-1 bg-transparent transition-colors flex-1 print:border-indigo-400"
             value={detail}
             onChange={(e) => handleChange(true, e.target.value)}
             placeholder="詳細を入力"
@@ -70,7 +70,7 @@ const DropdownAndText = ({ label, value, options, onChange }: { label: string, v
       <label className="text-xs font-bold text-indigo-700">{label}</label>
       <div className="flex gap-2">
         <select
-          className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors"
+          className="border-b border-indigo-300 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors print:border-indigo-400"
           value={selectedOption}
           onChange={(e) => handleSelectChange(e.target.value)}
         >
@@ -81,7 +81,7 @@ const DropdownAndText = ({ label, value, options, onChange }: { label: string, v
         </select>
         <input
           type="text"
-          className="border-b border-indigo-200 focus:border-indigo-500 outline-none text-base py-1 bg-transparent transition-colors flex-1"
+          className="border-b border-indigo-300 focus:border-indigo-500 outline-none text-base py-1 bg-transparent transition-colors flex-1 print:border-indigo-400"
           value={detail}
           onChange={(e) => handleTextChange(e.target.value)}
           placeholder="詳細を入力"
@@ -96,7 +96,7 @@ const InputField = ({ label, value, field, onUpdate, type = "text", placeholder 
     <label className="text-xs font-bold text-indigo-700">{label}</label>
     <input
       type={type}
-      className="border-b border-indigo-200 focus:border-indigo-500 outline-none text-base py-1 bg-transparent transition-colors"
+      className="border-b border-indigo-300 focus:border-indigo-500 outline-none text-base py-1 bg-transparent transition-colors print:border-indigo-400"
       value={value}
       onChange={(e) => onUpdate(field, e.target.value)}
       placeholder={placeholder}
@@ -172,7 +172,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
   };
 
   return (
-    <div className="face-sheet-container bg-white shadow-xl mx-auto max-w-[210mm] print:shadow-none print:mx-0 font-sans">
+    <div className="face-sheet-container bg-white shadow-xl mx-auto max-w-[210mm] print:shadow-none print:mx-0 font-sans" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }}>
 
       {/* PAGE 1 */}
       <div className="w-[210mm] h-[296mm] p-[10mm] relative box-border overflow-hidden" style={{ pageBreakAfter: 'always' }}>
