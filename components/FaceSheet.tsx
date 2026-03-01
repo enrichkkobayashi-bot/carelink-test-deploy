@@ -298,7 +298,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[200px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[160px]">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-1">
                   <label className="text-xs font-bold text-indigo-700 block truncate">ジェノグラム（家系図）</label>
@@ -460,7 +460,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[200px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[260px]">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-1">
                   <label className="text-xs font-bold text-indigo-700 block truncate">間取り図</label>
@@ -491,11 +491,11 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               <div className="flex flex-col gap-2.5 h-full">
                 <div className="h-1/2 flex flex-col">
                   <label className="text-xs font-bold text-indigo-700 block mb-1">今までの生活</label>
-                  <textarea className="w-full border border-indigo-200 rounded p-1 text-sm flex-1 resize-none bg-transparent outline-none transition-colors" value={data.lifeHistory} onChange={(e) => onUpdate('lifeHistory', e.target.value)} />
+                  <textarea className="w-full border border-indigo-200 rounded p-1 text-sm flex-1 resize-none bg-transparent outline-none transition-colors" value={data.lifeHistory} onChange={(e) => onUpdate('lifeHistory', e.target.value)} rows={5} />
                 </div>
                 <div className="h-1/2 flex flex-col">
                   <label className="text-xs font-bold text-indigo-700 block mb-1">現在の生活状況</label>
-                  <textarea className="w-full border border-indigo-200 rounded p-1 text-sm flex-1 resize-none bg-transparent outline-none transition-colors" value={data.currentSituation} onChange={(e) => onUpdate('currentSituation', e.target.value)} />
+                  <textarea className="w-full border border-indigo-200 rounded p-1 text-sm flex-1 resize-none bg-transparent outline-none transition-colors" value={data.currentSituation} onChange={(e) => onUpdate('currentSituation', e.target.value)} rows={5} />
                 </div>
               </div>
             </div>
