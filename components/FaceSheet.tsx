@@ -298,7 +298,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[180px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[240px]">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-1">
                   <label className="text-xs font-bold text-indigo-700 block truncate">ジェノグラム（家系図）</label>
@@ -421,8 +421,8 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
 
           <section className="pdf-avoid-break">
             <SectionTitle title="5. 生活・居住環境" />
-            <div className="grid grid-cols-2 lg:grid-cols-4 print:grid-cols-4 gap-2 mb-2">
-              <div className="flex flex-col gap-1">
+            <div className="grid grid-cols-2 lg:grid-cols-4 print:grid-cols-4 gap-4 mb-4">
+              <div className="flex flex-col gap-2">
                 <label className="text-xs font-bold text-indigo-700">居住形態</label>
                 <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.housingType} onChange={(e) => onUpdate('housingType', e.target.value)}>
                   <option value="持ち家(戸建)">持ち家(戸建)</option>
@@ -431,36 +431,36 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
                   <option value="公営住宅">公営住宅</option>
                 </select>
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2">
                 <label className="text-xs font-bold text-indigo-700">自室</label>
                 <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.hasOwnRoom} onChange={(e) => onUpdate('hasOwnRoom', e.target.value)}><option value="有">有</option><option value="無">無</option></select>
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2">
                 <label className="text-xs font-bold text-indigo-700">日中独居</label>
                 <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.isSoloDuringDay} onChange={(e) => onUpdate('isSoloDuringDay', e.target.value)}><option value="無">無</option><option value="有">有</option></select>
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2">
                 <label className="text-xs font-bold text-indigo-700">浴室</label>
                 <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.hasBath} onChange={(e) => onUpdate('hasBath', e.target.value)}><option value="有">有</option><option value="無">無</option></select>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 print:grid-cols-3 gap-2 mb-2">
-              <div className="flex flex-col gap-1">
+            <div className="grid grid-cols-2 lg:grid-cols-3 print:grid-cols-3 gap-4 mb-4">
+              <div className="flex flex-col gap-2">
                 <label className="text-xs font-bold text-indigo-700">便所</label>
                 <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.toiletType} onChange={(e) => onUpdate('toiletType', e.target.value)}><option value="洋式">洋式</option><option value="和式">和式</option><option value="ポータブル">ポータブル</option></select>
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2">
                 <label className="text-xs font-bold text-indigo-700">段差</label>
                 <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.hasSteps} onChange={(e) => onUpdate('hasSteps', e.target.value)}><option value="無">無</option><option value="有(各所にあり)">有(各所にあり)</option><option value="有(一部あり)">有(一部あり)</option></select>
               </div>
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-2">
                 <label className="text-xs font-bold text-indigo-700">住宅改修</label>
                 <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.hasRenovation} onChange={(e) => onUpdate('hasRenovation', e.target.value)}><option value="無">無</option><option value="有(手すり等)">有(手すり等)</option><option value="予定あり">予定あり</option></select>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[220px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[320px]">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-1">
                   <label className="text-xs font-bold text-indigo-700 block truncate">間取り図</label>
