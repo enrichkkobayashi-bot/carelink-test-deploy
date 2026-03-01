@@ -350,7 +350,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
         <div className="space-y-2">
           <section className="pdf-avoid-break">
             <SectionTitle title="4. 日常生活の自立判定・健康状態" pageNumber={2} />
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-2">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-6">
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-bold text-indigo-700">障害高齢者の日常生活自立度</label>
                 <select className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.physicalIndependence} onChange={(e) => onUpdate('physicalIndependence', e.target.value)}>
@@ -373,14 +373,14 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-x-4 gap-y-2 mb-2">
+            <div className="grid grid-cols-4 gap-x-4 gap-y-2 mb-6">
               <InputField label="身長(cm)" value={data.height} field="height" type="number" onUpdate={onUpdate} />
               <InputField label="体重(kg)" value={data.weight} field="weight" type="number" onUpdate={onUpdate} />
               <InputField label="BMI" value={data.bmi} field="bmi" onUpdate={onUpdate} />
               <InputField label="血圧" value={data.bloodPressure} field="bloodPressure" onUpdate={onUpdate} />
             </div>
 
-            <div className="grid grid-cols-1 gap-4 mb-2">
+            <div className="grid grid-cols-1 gap-4 mb-6">
               <div className="grid grid-cols-3 gap-4">
                 <InputField label="医療機関名" value={data.hospitalName} field="hospitalName" onUpdate={onUpdate} />
                 <InputField label="医師名" value={data.doctorName} field="doctorName" onUpdate={onUpdate} />
@@ -388,19 +388,19 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-4 mb-2">
+            <div className="grid grid-cols-1 gap-4 mb-6">
               <div className="flex flex-col gap-1">
                 <label className="text-xs font-bold text-indigo-700">既往歴・主傷歴</label>
-                <textarea className="border border-indigo-200 rounded p-2 text-base h-12 resize-none bg-transparent focus:border-indigo-500 outline-none transition-colors" value={data.medicalHistory} onChange={(e) => onUpdate('medicalHistory', e.target.value)} />
+                <textarea className="border border-indigo-200 rounded p-2 text-base h-20 resize-none bg-transparent focus:border-indigo-500 outline-none transition-colors" value={data.medicalHistory} onChange={(e) => onUpdate('medicalHistory', e.target.value)} />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-2">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-6">
               <SelectWithDetail label="麻痺・拘縮" value={data.paralysisContracture} onChange={(val) => onUpdate('paralysisContracture', val)} />
               <SelectWithDetail label="痛み・しびれ" value={data.painNumbness} onChange={(val) => onUpdate('painNumbness', val)} />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 mb-6">
               <div className="flex flex-col gap-1">
                 <DropdownAndText
                   label="服薬管理"
@@ -412,7 +412,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               <InputField label="処方薬の種類" value={data.medicationTypes} field="medicationTypes" onUpdate={onUpdate} />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-4 mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-4 mt-6">
               <InputField label="感染症" value={data.infections} field="infections" onUpdate={onUpdate} placeholder="肝炎、梅毒など" />
               <InputField label="アレルギー" value={data.allergies} field="allergies" onUpdate={onUpdate} placeholder="食物、薬剤" />
               <InputField label="認知症症状(BPSD)" value={data.bpsdSymptoms} field="bpsdSymptoms" onUpdate={onUpdate} placeholder="不穏、徘徊など" />
