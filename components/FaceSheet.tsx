@@ -287,7 +287,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
 
           <section className="pdf-avoid-break">
             <SectionTitle title="3. 現在利用中のサービス" />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-1.5">
+            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 mb-1.5">
               <div className="flex flex-col">
                 <label className="text-xs font-bold text-indigo-700 block mb-0.5">フォーマルサービス（介護保険等）</label>
                 <textarea className="w-full border border-indigo-200 rounded p-2 text-base h-16 resize-none bg-transparent focus:border-indigo-500 focus:ring-1 focus:ring-indigo-200 outline-none transition-colors" value={data.formalService} onChange={(e) => onUpdate('formalService', e.target.value)} placeholder="例：訪問介護、通所介護、福祉用具貸与など" />
@@ -400,7 +400,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               <SelectWithDetail label="痛み・しびれ" value={data.painNumbness} onChange={(val) => onUpdate('painNumbness', val)} />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-1.5">
+            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 mb-1.5">
               <div className="flex flex-col gap-0.5">
                 <DropdownAndText
                   label="服薬管理"
@@ -412,7 +412,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               <InputField label="処方薬の種類" value={data.medicationTypes} field="medicationTypes" onUpdate={onUpdate} />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+            <div className="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-4 mt-2">
               <InputField label="感染症" value={data.infections} field="infections" onUpdate={onUpdate} placeholder="肝炎、梅毒など" />
               <InputField label="アレルギー" value={data.allergies} field="allergies" onUpdate={onUpdate} placeholder="食物、薬剤" />
               <InputField label="認知症症状(BPSD)" value={data.bpsdSymptoms} field="bpsdSymptoms" onUpdate={onUpdate} placeholder="不穏、徘徊など" />
@@ -421,7 +421,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
 
           <section className="pdf-avoid-break">
             <SectionTitle title="5. 生活・居住環境" />
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mb-1.5">
+            <div className="grid grid-cols-2 lg:grid-cols-4 print:grid-cols-4 gap-2 mb-1.5">
               <div className="flex flex-col gap-0.5">
                 <label className="text-xs font-bold text-indigo-700">居住形態</label>
                 <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.housingType} onChange={(e) => onUpdate('housingType', e.target.value)}>
@@ -445,7 +445,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 mb-1.5">
+            <div className="grid grid-cols-2 lg:grid-cols-3 print:grid-cols-3 gap-2 mb-1.5">
               <div className="flex flex-col gap-0.5">
                 <label className="text-xs font-bold text-indigo-700">便所</label>
                 <select className="border-b border-indigo-200 outline-none text-sm py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.toiletType} onChange={(e) => onUpdate('toiletType', e.target.value)}><option value="洋式">洋式</option><option value="和式">和式</option><option value="ポータブル">ポータブル</option></select>
