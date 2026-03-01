@@ -24,7 +24,7 @@ const SelectWithDetail = ({ label, value, onChange }: { label: string, value: st
       <label className="text-xs font-bold text-indigo-700">{label}</label>
       <div className="flex gap-2">
         <select
-          className="border-b border-indigo-300 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors w-20 print:border-indigo-400"
+          className="border-b border-indigo-300 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors w-20 print:border-indigo-400 print:text-indigo-900 print:appearance-none font-sans"
           value={hasIssue ? '有' : '無'}
           onChange={(e) => handleChange(e.target.value === '有', detail)}
         >
@@ -70,7 +70,7 @@ const DropdownAndText = ({ label, value, options, onChange }: { label: string, v
       <label className="text-xs font-bold text-indigo-700">{label}</label>
       <div className="flex gap-2">
         <select
-          className="border-b border-indigo-300 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors print:border-indigo-400"
+          className="border-b border-indigo-300 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors print:border-indigo-400 print:text-indigo-900 print:appearance-none font-sans"
           value={selectedOption}
           onChange={(e) => handleSelectChange(e.target.value)}
         >
@@ -175,7 +175,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
     <div className="face-sheet-container bg-white shadow-xl mx-auto max-w-[210mm] print:shadow-none print:mx-0 font-sans" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }}>
 
       {/* PAGE 1 */}
-      <div className="w-[210mm] h-[296mm] p-[10mm] relative box-border overflow-hidden" style={{ pageBreakAfter: 'always' }}>
+      <div className="w-[210mm] h-[295mm] p-[10mm] relative box-border overflow-hidden" style={{ pageBreakAfter: 'always' }}>
         <div className="text-center mb-4">
           <h1 className="text-2xl font-bold text-indigo-900 border-b-2 border-indigo-500 inline-block px-8 pb-1">フェイスシート（基本情報）</h1>
         </div>
@@ -187,7 +187,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               <InputField label="相談日" value={data.consultationDate} field="consultationDate" type="date" onUpdate={onUpdate} />
               <div className="flex flex-col gap-0.5">
                 <label className="text-xs font-bold text-indigo-700">来所・電話</label>
-                <select className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.consultationMethod} onChange={(e) => onUpdate('consultationMethod', e.target.value)}>
+                <select className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors print:text-indigo-900 print:appearance-none font-sans" value={data.consultationMethod} onChange={(e) => onUpdate('consultationMethod', e.target.value)}>
                   <option value="">選択</option>
                   <option value="来所">来所</option>
                   <option value="電話">電話</option>
@@ -201,7 +201,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               <div className="col-span-2"><InputField label="氏名" value={data.userName} field="userName" onUpdate={onUpdate} /></div>
               <div className="flex flex-col gap-0.5">
                 <label className="text-xs font-bold text-indigo-700">性別</label>
-                <select className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.userGender} onChange={(e) => onUpdate('userGender', e.target.value)}>
+                <select className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors print:text-indigo-900 print:appearance-none font-sans" value={data.userGender} onChange={(e) => onUpdate('userGender', e.target.value)}>
                   <option value="">選択</option>
                   <option value="男">男</option>
                   <option value="女">女</option>
@@ -220,7 +220,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
             <div className="grid grid-cols-4 gap-4">
               <div className="flex flex-col gap-0.5">
                 <label className="text-xs font-bold text-indigo-700">要介護度</label>
-                <select className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors" value={data.careLevel} onChange={(e) => onUpdate('careLevel', e.target.value)}>
+                <select className="border-b border-indigo-200 outline-none text-base py-1 bg-transparent focus:border-indigo-500 transition-colors print:text-indigo-900 print:appearance-none font-sans" value={data.careLevel} onChange={(e) => onUpdate('careLevel', e.target.value)}>
                   <option value="未申請">未申請</option>
                   <option value="自立">自立</option>
                   <option value="要支援1">要支援1</option>
@@ -342,7 +342,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
       </div>
 
       {/* PAGE 2 */}
-      <div className="w-[210mm] h-[296mm] p-[10mm] relative box-border overflow-hidden">
+      <div className="w-[210mm] h-[295mm] p-[10mm] relative box-border overflow-hidden">
         <div className="text-center mb-4">
           <h1 className="text-2xl font-bold text-indigo-900 border-b-2 border-indigo-500 inline-block px-8 pb-1">フェイスシート（身体状況・環境）</h1>
         </div>
