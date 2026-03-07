@@ -100,6 +100,7 @@ export interface FaceSheetData {
   serviceUtilization: string;  // 利用サービス
   formalService: string;       // 現在使用しているフォーマルサービス
   informalService: string;     // 現在使用しているインフォーマルサービス
+  specialNotes: string;        // 特記事項
 }
 
 export enum AppStatus {

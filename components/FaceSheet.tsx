@@ -395,26 +395,14 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-6">
+            <div className="grid grid-cols-4 gap-x-4 gap-y-2 mb-6">
               <SelectWithDetail label="麻痺・拘縮" value={data.paralysisContracture} onChange={(val) => onUpdate('paralysisContracture', val)} />
               <SelectWithDetail label="痛み・しびれ" value={data.painNumbness} onChange={(val) => onUpdate('painNumbness', val)} />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 mb-6">
-              <div className="flex flex-col gap-1">
-                <DropdownAndText
-                  label="服薬管理"
-                  value={data.medicationStatus}
-                  options={["自立", "家族管理", "訪問薬剤師", "一部介助", "全介助"]}
-                  onChange={(val) => onUpdate('medicationStatus', val)}
-                />
-              </div>
-              <InputField label="処方薬の種類" value={data.medicationTypes} field="medicationTypes" onUpdate={onUpdate} />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 print:grid-cols-3 gap-4 mt-6">
               <InputField label="感染症" value={data.infections} field="infections" onUpdate={onUpdate} placeholder="肝炎、梅毒など" />
               <InputField label="アレルギー" value={data.allergies} field="allergies" onUpdate={onUpdate} placeholder="食物、薬剤" />
+            </div>
+
+            <div className="mb-6">
               <InputField label="認知症症状(BPSD)" value={data.bpsdSymptoms} field="bpsdSymptoms" onUpdate={onUpdate} placeholder="不穏、徘徊など" />
             </div>
           </section>
@@ -460,7 +448,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[220px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[200px] mb-4">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-1">
                   <label className="text-xs font-bold text-indigo-700 block truncate">間取り図</label>
@@ -498,6 +486,16 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
                   <textarea className="w-full border border-indigo-200 rounded p-1 text-sm flex-1 resize-none bg-transparent outline-none transition-colors" value={data.currentSituation} onChange={(e) => onUpdate('currentSituation', e.target.value)} rows={5} />
                 </div>
               </div>
+            </div>
+
+            <div className="mt-2">
+              <label className="text-xs font-bold text-indigo-700 block mb-1">特記事項</label>
+              <textarea
+                className="w-full border border-indigo-200 rounded p-2 text-sm h-20 resize-none bg-transparent focus:border-indigo-500 outline-none transition-colors"
+                value={data.specialNotes}
+                onChange={(e) => onUpdate('specialNotes', e.target.value)}
+                placeholder="その他、特記事項があれば入力してください"
+              />
             </div>
           </section>
         </div>

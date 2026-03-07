@@ -94,7 +94,8 @@ const App: React.FC = () => {
     currentSituation: '',
     serviceUtilization: '',
     formalService: '',
-    informalService: ''
+    informalService: '',
+    specialNotes: ''
   });
 
   const [carePlan, setCarePlan] = useState<CarePlan | null>(null);
@@ -423,7 +424,8 @@ const App: React.FC = () => {
       currentSituation: '',
       serviceUtilization: '',
       formalService: '',
-      informalService: ''
+      informalService: '',
+      specialNotes: ''
     });
 
     // Reset Assessment Date
