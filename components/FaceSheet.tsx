@@ -460,7 +460,7 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[200px] mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 print:grid-cols-2 gap-4 h-[160px] mb-2">
               <div className="flex flex-col h-full">
                 <div className="flex justify-between items-center mb-1">
                   <label className="text-xs font-bold text-indigo-700 block truncate">間取り図</label>
@@ -499,17 +499,18 @@ const FaceSheet: React.FC<FaceSheetProps> = ({ data, onUpdate }) => {
                 </div>
               </div>
             </div>
-
-            <div className="mt-2">
-              <label className="text-xs font-bold text-indigo-700 block mb-1">特記事項</label>
-              <textarea
-                className="w-full border border-indigo-200 rounded p-2 text-sm h-40 resize-none bg-transparent focus:border-indigo-500 outline-none transition-colors"
-                value={data.specialNotes}
-                onChange={(e) => onUpdate('specialNotes', e.target.value)}
-                placeholder="その他、特記事項があれば入力してください"
-              />
-            </div>
           </section>
+
+          {/* 特記事項を下部の空きスペースに配置 */}
+          <div className="mt-auto pt-4 border-t border-indigo-100">
+            <label className="text-xs font-bold text-indigo-700 block mb-1">特記事項</label>
+            <textarea
+              className="w-full border border-indigo-200 rounded p-2 text-sm h-24 resize-none bg-transparent focus:border-indigo-500 outline-none transition-colors"
+              value={data.specialNotes}
+              onChange={(e) => onUpdate('specialNotes', e.target.value)}
+              placeholder="その他、特記事項があれば入力してください"
+            />
+          </div>
         </div>
       </div>
     </div>
